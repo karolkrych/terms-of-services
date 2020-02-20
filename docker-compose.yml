@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    container_name: postgres_terms
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=demo123
+      - POSTGRES_DB=demo
+  web:
+    build: .
+    command: >
+      bash -c "cd app
+      && python manage.py makemigrations --merge
+      && python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=demo123
+      - POSTGRES_DATABASE=demo
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+
+volumes:
+  pgdata:
