@@ -46,9 +46,9 @@ INTERNAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'reversion',
-    # 'rest_framework',
-    # 'rest_framework_swagger',
-    # 'django_filters',
+    'rest_framework',
+    'rest_framework_swagger',
+    'django_filters',
 ]
 
 INSTALLED_APPS = BUILD_IN_APPS + INTERNAL_APPS + THIRD_PARTY_APPS
@@ -138,3 +138,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
