@@ -18,6 +18,9 @@ class UserSignedAgreement(models.Model):
     postcode = models.CharField('User postcode', max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.user.get_full_name()}: {self.agreement.name}'
+
     def _get_agreement_version(self):
         versions = Version.objects.get_for_object(self.agreement)   # versions are ordered from the newest
         for version in versions:

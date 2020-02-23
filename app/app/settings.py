@@ -47,6 +47,7 @@ INTERNAL_APPS = [
 THIRD_PARTY_APPS = [
     'reversion',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_swagger',
     'django_filters',
 ]

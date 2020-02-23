@@ -9,7 +9,7 @@ class AgreementTemplate(models.Model):
     content = models.TextField('HTML content of agreement')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
     def save(self, **kwargs):
         with reversion.create_revision():
